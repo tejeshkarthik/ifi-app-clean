@@ -120,7 +120,7 @@ export function generateBOLFromReports(
     reports.forEach(report => {
         report.materials.forEach(mat => {
             const existing = materialsMap.get(mat.materialCode);
-            const rollsEquivalent = mat.fullRolls + (mat.halfRolls / 2);
+            const rollsEquivalent = mat.rollsUsed;
 
             if (existing) {
                 existing.totalRolls += rollsEquivalent;
