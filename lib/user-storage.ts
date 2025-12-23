@@ -1,7 +1,8 @@
 // User storage for role-based access control
 // Provides CRUD operations for user management
 
-import { UserRole } from './permissions';
+// Define UserRole type locally (same as AppRole from employee-storage)
+export type UserRole = 'super-admin' | 'pm' | 'supervisor' | 'lead';
 
 const USERS_KEY = 'ifi_users';
 
@@ -254,7 +255,7 @@ export function useUser() {
     return {
         user,
         role: user?.role,
-        isAdmin: user?.role === 'admin' || user?.role === 'super-admin',
+        isAdmin: user?.role === 'super-admin',
         isPM: user?.role === 'pm',
         isSupervisor: user?.role === 'supervisor',
     };
