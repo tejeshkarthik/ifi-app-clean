@@ -1,17 +1,17 @@
 
 
-import { Employee, EmployeeRole, AppRole } from './employee-storage';
-import { Company, CompanyType, POC } from './company-storage';
+import { Employee } from './employee-storage';
+import { Company, POC } from './company-storage';
 import { Material } from './material-storage';
 import { Equipment } from './equipment-storage';
-import { Project, ProjectStatus, ProjectMaterial } from './project-storage';
-import { Workflow, WorkflowLevel, FormType } from './workflow-storage';
-import { Timesheet, TimesheetStatus, TimeEntry } from './timesheet-storage';
+import { Project, ProjectMaterial } from './project-storage';
+import { Workflow, WorkflowLevel } from './workflow-storage';
+import { Timesheet } from './timesheet-storage';
 import { MaterialUsageLog, IssuesLog } from './forms-storage';
 import { LOOKUP_CATEGORIES, LookupCategoryId } from './lookup-storage';
 import { JHA, createInitialTasks } from './jha-storage';
 import { PreConstructionChecklist, createDefaultChecklists } from './preconstruction-storage';
-import { BillOfLading, MaterialSummary } from './bol-storage';
+import { BillOfLading } from './bol-storage';
 
 
 // ==========================================
@@ -364,7 +364,7 @@ export const seedGlobalDemoData = () => {
         console.log('📋 Seeding Comprehensive Lookup Values...');
 
         const lookups: any = {};
-        LOOKUP_CATEGORIES.forEach(cat => { lookups[cat.id] = []; });
+        LOOKUP_CATEGORIES.forEach((cat: { id: LookupCategoryId; name: string }) => { lookups[cat.id] = []; });
 
         const addLookup = (catId: LookupCategoryId, name: string, id?: string) => {
             lookups[catId].push({
@@ -464,10 +464,10 @@ export const seedGlobalDemoData = () => {
         localStorage.setItem('ifi_lookup_tables', JSON.stringify(lookups));
 
         // 📌 CAPTURE LOOKUP IDS for DFR seeding (FIX #1)
-        const oilPg6422Id = lookups.oil_types?.find(v => v.name === 'PG 64-22')?.id || '';
-        const tackSS1Id = lookups.tack_coat_types?.find(v => v.name === 'SS-1')?.id || '';
-        const asphaltTypeBId = lookups.asphalt_mix_types?.find(v => v.name === 'Type B')?.id || '';
-        const highGradeAId = lookups.high_grade_types?.find(v => v.name === 'Grade A')?.id || '';
+        const oilPg6422Id = lookups.oil_types?.find((v: { id: string; name: string }) => v.name === 'PG 64-22')?.id || '';
+        const tackSS1Id = lookups.tack_coat_types?.find((v: { id: string; name: string }) => v.name === 'SS-1')?.id || '';
+        const asphaltTypeBId = lookups.asphalt_mix_types?.find((v: { id: string; name: string }) => v.name === 'Type B')?.id || '';
+        const highGradeAId = lookups.high_grade_types?.find((v: { id: string; name: string }) => v.name === 'Grade A')?.id || '';
 
 
         // 6. SEED PROJECTS ===============================================
