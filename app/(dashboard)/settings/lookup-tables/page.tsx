@@ -41,11 +41,12 @@ import {
     deleteLookupValue,
     toggleLookupValueStatus,
     type LookupValue,
+    type LookupCategoryId,
 } from '@/lib/lookup-storage';
 import { Plus, Pencil, Trash2, Check, X } from 'lucide-react';
 
 export default function LookupTablesPage() {
-    const [selectedCategory, setSelectedCategory] = useState(LOOKUP_CATEGORIES[0].id);
+    const [selectedCategory, setSelectedCategory] = useState<LookupCategoryId>(LOOKUP_CATEGORIES[0].id);
     const [values, setValues] = useState<LookupValue[]>([]);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
